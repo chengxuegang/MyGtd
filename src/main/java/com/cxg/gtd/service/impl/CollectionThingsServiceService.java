@@ -9,8 +9,10 @@ import java.util.List;
 
 @Service
 public class CollectionThingsServiceService implements ICollectionThingsService {
+
     @Override
     public List<CollectionThings> getCollectionThings(User user) {
+
         return null;
     }
 }

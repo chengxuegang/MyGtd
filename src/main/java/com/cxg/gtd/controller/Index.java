@@ -1,18 +1,1 @@
-package com.cxg.gtd.controller;
-
-import com.cxg.gtd.entity.CollectionThings;
-import com.cxg.gtd.service.ICollectionThingsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-
-@RestController
-public class Index {
-    @Autowired
-    ICollectionThingsService collectionService ;
-    public List<CollectionThings> getCollectionThings(){
-        return null;
-    }
-
-}
+package com.cxg.gtd.controller;import com.cxg.gtd.entity.CollectionThings;import com.cxg.gtd.entity.User;import com.cxg.gtd.service.ICollectionThingsService;import io.swagger.annotations.ApiOperation;import org.springframework.beans.factory.annotation.Autowired;import org.springframework.web.bind.annotation.GetMapping;import org.springframework.web.bind.annotation.RequestMapping;import org.springframework.web.bind.annotation.RestController;import java.util.List;@RestController@RequestMapping("/gtd")public class Index {    @Autowired    ICollectionThingsService collectionService ;    /**     * 当前登录人的待办任务列表     * @return     */    @ApiOperation("首页收件箱列表")    @GetMapping("/index")    public List<CollectionThings> getCollectionThings(){        User user = new User();        return collectionService.getCollectionThings(user);    }}
