@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cxg.gtd.dao.CollectionThingsMapper">
+  <resultMap id="BaseResultMap" type="com.cxg.gtd.entity.CollectionThings">
+    <result column="Id" jdbcType="BIGINT" property="id" />
+    <result column="OWNER" jdbcType="VARCHAR" property="owner" />
+    <result column="CREATE_tIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="SUMMARY" jdbcType="VARCHAR" property="summary" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="SCENE" jdbcType="VARCHAR" property="scene" />
+    <result column="IMPORTANCE_dEGREE" jdbcType="VARCHAR" property="importanceDegree" />
+    <result column="URGENCY_dEGREE" jdbcType="VARCHAR" property="urgencyDegree" />
+    <result column="IS_rEQUIRED_eND" jdbcType="VARCHAR" property="isRequiredEnd" />
+    <result column="LAST_dATE" jdbcType="TIMESTAMP" property="lastDate" />
+    <result column="DEAL_mETHOD" jdbcType="VARCHAR" property="dealMethod" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Id, OWNER, CREATE_tIME, SUMMARY, CONTENT, SCENE, IMPORTANCE_dEGREE, URGENCY_dEGREE, 
+    IS_rEQUIRED_eND, LAST_dATE, DEAL_mETHOD
+  </sql>
+  <select id="selectByExample" parameterType="com.cxg.gtd.entity.CollectionThingsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_COLLECTION_THINGS
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <insert id="insert" keyColumn="Id" keyProperty="id" parameterType="com.cxg.gtd.entity.CollectionThings" useGeneratedKeys="true">
+    insert into T_COLLECTION_THINGS (OWNER, CREATE_tIME, SUMMARY, 
+      CONTENT, SCENE, IMPORTANCE_dEGREE, 
+      URGENCY_dEGREE, IS_rEQUIRED_eND, LAST_dATE, 
+      DEAL_mETHOD)
+    values (#{owner,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{summary,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{scene,jdbcType=VARCHAR}, #{importanceDegree,jdbcType=VARCHAR}, 
+      #{urgencyDegree,jdbcType=VARCHAR}, #{isRequiredEnd,jdbcType=VARCHAR}, #{lastDate,jdbcType=TIMESTAMP}, 
+      #{dealMethod,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="Id" keyProperty="id" parameterType="com.cxg.gtd.entity.CollectionThings" useGeneratedKeys="true">
+    insert into T_COLLECTION_THINGS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="owner != null">
+        OWNER,
+      </if>
+      <if test="createTime != null">
+        CREATE_tIME,
+      </if>
+      <if test="summary != null">
+        SUMMARY,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="scene != null">
+        SCENE,
+      </if>
+      <if test="importanceDegree != null">
+        IMPORTANCE_dEGREE,
+      </if>
+      <if test="urgencyDegree != null">
+        URGENCY_dEGREE,
+      </if>
+      <if test="isRequiredEnd != null">
+        IS_rEQUIRED_eND,
+      </if>
+      <if test="lastDate != null">
+        LAST_dATE,
+      </if>
+      <if test="dealMethod != null">
+        DEAL_mETHOD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="owner != null">
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="scene != null">
+        #{scene,jdbcType=VARCHAR},
+      </if>
+      <if test="importanceDegree != null">
+        #{importanceDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="urgencyDegree != null">
+        #{urgencyDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="isRequiredEnd != null">
+        #{isRequiredEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDate != null">
+        #{lastDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealMethod != null">
+        #{dealMethod,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

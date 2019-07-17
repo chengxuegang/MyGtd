@@ -1,29 +1,81 @@
 // 页面初始化：填充数据
 window.onload = function() {
-	$.ajax({
-		url: "http://10.2.3.235:80/api/article/list/lastest",
-		type: "GET",
-		dataType: "json",
-		success: function(json) {
-			$.each(json, function(i, item) {
-				// 设置右下角题图的内容
-				$(".smallPictures img[location=" + i + "]").attr("src", item.pictureUrl);
-				$(".smallPictures img[location=" + i + "]").attr("pictureUrl", item.pictureUrl);
-				$(".smallPictures img[location=" + i + "]").attr("articleId", item.id);
-				$(".smallPictures img[location=" + i + "]").attr("title", item.title);
-				$(".smallPictures img[location=" + i + "]").attr("summary", item.summary);
+	 initCollectionThisngs();
+};
+function initCollectionThisngs(){
+	var urlt = "http://127.0.0.1/gtd/cList";
+	var $table;
+	$table = $("#ctGrid").bootstrapTable({
+		url:urlt,
+		method:'GET',
+		striped : true,
+		pagination: true,
+		sortable : true,
+		sortOrder : "asc",
+		pageNumber : 1,
+        // pageSize: rows,                     //每页的记录行数（*）
+		pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+    	search: false,                      //是否显示表格搜索
+        strictSearch: true,
+        showColumns: true,                  //是否显示所有的列（选择显示的列）
+        showRefresh: true,                  //是否显示刷新按钮
+        minimumCountColumns: 2,             //最少允许的列数
+        clickToSelect: true,                //是否启用点击选中行
+		//height: 500,                      //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+        uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+        showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
+        cardView: false,                    //是否显示详细视图
+        detailView: false,                  //是否显示父子表
 
-				// 默认显示第一篇文章的信息
-				if(i == "0") {
-					$("#articleTitle").html(item.title);
-					$("#articleSummary").html(item.summary);
-					$("#articlePicture img").attr("src", item.pictureUrl);
-					$("#showArticle").attr("articleId", item.id);
-				}
-			});
+		columns:[
+			{
+			checkbox:true,
+			visible:true,
+			},
+			{field:'id',
+			align:'center',          
+			title:'编号'
+			},
+            {field:'owner',
+        	 align:'center',          
+			 title:'当前人员'
+            },
+            {field:'summary',
+           	 align:'center',
+             title:'摘要'
+			},
+            {field:'content',
+        	 align:'center',
+             title:'内容'
+            },
+            {field:'scene',
+           	 align:'center',
+			 title:'场景'
+			},
+            {field:'importanceDegree',
+        	 align:'center',
+			 title:'重要程度'
+			},
+            {field:'urgencyDegree',
+        	 align:'center',
+			 title:'紧急程度'
+			},
+            {field:'dealMethod',
+        	 align:'center',
+			 title:'处理方法'
+			}],
+		onLoadSuccess:function(){
+
+		},
+		onLoadError:function () {
+			showTips("数据加载失败");
+        },
+		onDblClickRow:function(row, $element){
+			var id = row.id;
+			EditViewById(id,'view');
 		}
 	});
-};
+}
 
 // 按钮点击进行文章详情页
 $("#showArticle").click(function() {
@@ -32,46 +84,4 @@ $("#showArticle").click(function() {
 	window.location.href = url;
 });
 
-// 测试使用的函数
-// $("#showArticle").click(function() {
-// 	$.ajax({
-// 		url: "http://10.2.3.235:80/api/article/1",
-// 		type: "GET",
-// 		dataType: "json",
-// 		success: function(json) {
-// 			$("#articleTitle").html(json.title);
-// 			$("#articleSummary").html(json.summary);
-// 		}
-// 	})
-// });
 
-// 缩略图鼠标进入事件：更换大图和按钮的articleId
-$(".smallPictures img").mouseenter(function() {
-	var pictureUrl = $(this).attr("pictureUrl");
-	var articleId = $(this).attr("articleId")
-	var title = $(this).attr("title");
-	var summary = $(this).attr("summary");
-	$("#articlePicture img").attr("src", pictureUrl);
-	$("#showArticle").attr("articleId", articleId);
-	$("#articleTitle").html(title);
-	$("#articleSummary").html(summary);
-});
-
-// function checkPicurl(url) {
-// 	var img = new Image();
-// 	img.src = url;
-// 	img.onerror = function() {
-// 		alert(name + " 图片加载失败，请检查url是否正确");
-// 		return false;
-// 	};
-//
-// 	if(img.complete) {
-// 		console.log(img.width + " " + img.height);
-// 	} else {
-// 		img.onload = function() {
-// 			console.log(img.width + " " + img.height);
-// 			img.onload = null;
-// 			//避免重复加载
-// 		}
-// 	}
-// }

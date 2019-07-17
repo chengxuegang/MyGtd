@@ -1,34 +1,115 @@
 package com.cxg.gtd.entity;
 
-import lombok.Data;
-
 import java.util.Date;
 
-@Data
 public class CollectionThings {
-
     private Long id;
-    /**谁**/
+
     private String owner;
-    /*创建时间*/
+
     private Date createTime;
-    /*摘要*/
+
     private String summary;
-    /*具体内容*/
+
     private String content;
-    /*场景*/
+
     private String scene;
-    /*重要程度*/
+
     private String importanceDegree;
-    /*紧急程度*/
-    private String  urgencyDegree;
-    /*是否有截止日*/
+
+    private String urgencyDegree;
+
     private String isRequiredEnd;
-    /*最迟日期*/
+
     private Date lastDate;
-    /*处理方式 处理、委托、推迟、删除*/
+
     private String dealMethod;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner == null ? null : owner.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary == null ? null : summary.trim();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
+    public String getScene() {
+        return scene;
+    }
+
+    public void setScene(String scene) {
+        this.scene = scene == null ? null : scene.trim();
+    }
+
+    public String getImportanceDegree() {
+        return importanceDegree;
+    }
+
+    public void setImportanceDegree(String importanceDegree) {
+        this.importanceDegree = importanceDegree == null ? null : importanceDegree.trim();
+    }
+
+    public String getUrgencyDegree() {
+        return urgencyDegree;
+    }
+
+    public void setUrgencyDegree(String urgencyDegree) {
+        this.urgencyDegree = urgencyDegree == null ? null : urgencyDegree.trim();
+    }
+
+    public String getIsRequiredEnd() {
+        return isRequiredEnd;
+    }
+
+    public void setIsRequiredEnd(String isRequiredEnd) {
+        this.isRequiredEnd = isRequiredEnd == null ? null : isRequiredEnd.trim();
+    }
+
+    public Date getLastDate() {
+        return lastDate;
+    }
+
+    public void setLastDate(Date lastDate) {
+        this.lastDate = lastDate;
+    }
+
+    public String getDealMethod() {
+        return dealMethod;
+    }
+
+    public void setDealMethod(String dealMethod) {
+        this.dealMethod = dealMethod == null ? null : dealMethod.trim();
+    }
 }
