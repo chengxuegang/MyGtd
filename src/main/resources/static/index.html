@@ -22,12 +22,53 @@
 		<!--引入头部-->
 		<script language="javascript" type="text/javascript" src="js/header.js"></script>
 
-		<!-- 标题 -->
-		<span class="label label-default">待处理任务</span>
-		<div id="content">
-			<table id="ctGrid" class="table text-center" options="url:http://127.0.0.1/gtd/cList">
-			</table>
-		</div>
+		<div class="container-fluid">
+	        <div class="row">
+				<!-- 菜单 -->
+	            <div class="col-md-2">
+	            	<!-- 侧边栏标签页 -->
+					<!-- <ul class="nav nav-pills nav-stacked">
+						侧边栏选项
+						<li role="presentation" class="active">
+							选项控制data-target对应的显隐
+							<a href="#" data-toggle="collapse" data-target="#list">商品管理</a>
+							隐藏的详细菜单
+							<ul id="list" class="collapse in">
+								<li class="active">
+									<a href="">
+										操作一
+									</a>
+								</li>
+								<li><a href="">操作二</a></li>
+							</ul>
+						</li>
+						<li role="presentation"><a href="#">Profile</a></li>
+						<li role="presentation"><a href="#">Messages</a></li>
+					</ul> -->
+					<ul class="nav nav-pills nav-stacked">
+						<li role="presentation" class="active"><a href='index.html'>首页</a></li>
+						<li role="presentation"><a href='blog.html'>收件箱</a></li>
+						<li role="presentation"><a href='about.html'>日历</a></li>
+						<li role="presentation"><a href='resume.html'>清单</a></li>
+						<li role="presentation"><a href='togole.html'>九宫格</a></li>
+						<li role="presentation"><a href='togole.html'>五万米高空</a></li>
+				 	</ul>
+	            </div>
+				<!-- 菜单结束 -->
+				<!-- 主窗体 -->
+				<div class="col-md-10">
+					<!-- 标题 -->
+					<span class="label label-default">待处理任务</span>
+					<div id="content">
+						<table id="ctGrid" class="table text-center" options="url:http://127.0.0.1/gtd/cList">
+						</table>
+					</div>
+				</div>
+				<!-- 主窗体结束 -->
+	        </div>
+        </div>
+			
+		
 
 		<!--底部-->
 		<div id="footer">
@@ -37,14 +78,11 @@
 				<img title="知乎ID：我没有三颗心脏" class="icon" src="img/zhihu-icon.png" />
 				<img title="wmyskxz_javaweb" class="icon" src="img/wechat-icon.png" />
 			</div> -->
-
 			<!--左上角的声明-->
 			<div id="info">
 				<span>CopyRight@CXG@</span>
 			</div>
-
 		</div>
-
 	</body>
 
 	<!--引入index页面的JS-->
