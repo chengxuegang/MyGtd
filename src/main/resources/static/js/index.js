@@ -63,6 +63,13 @@ function initCollectionThisngs(){
             {field:'dealMethod',
         	 align:'center',
 			 title:'处理方法'
+			},
+			{field : "operate", 
+				title : "操作", 
+				align: "center",
+				events: "operateEvents", 
+				width : "100px", 
+				formatter: operateFormatter
 			}],
 		onLoadSuccess:function(){
 
@@ -77,6 +84,34 @@ function initCollectionThisngs(){
 	});
 }
 
+function operateFormatter(value, row, index) {
+	var tesx = getOperHtml();
+	return [''+tesx
+		].join('');
+}
+		
+window.operateEvents = {
+		'click #operId li a': function (e, value, row, index) {
+        collectionsChange(value);
+         }
+};
+function getOperHtml(){
+	var text = '<div class="dropdown"> '
+		+ '<button type="button" class="btn btn-default ?btn-sm  dropdown-toggle" style="margin-right:15px;" id="operList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">操作</button>'
+		+ ' <ul class="dropdown-menu" aria-labelledby="operList" id="operId">'
+		+ ' <li><a href="#"  onclick="collectionsChange(\"1\")">复制到清单中</a></li>'
+		+ ' <li><a href="#"  onclick="collectionsChange(\"2\")">复制到日历中</a></li>'
+		+ ' <li><a href="#"  onclick="collectionsChange(\"3\")">复制到五万米中</a></li>'
+		+ ' <li role="separator" class="divider"></li>'
+		+ ' <li><a href="#"  onclick="collectionsChange(\"4\")">编辑</a></li>'
+		+ ' <li><a href="#"  onclick="collectionsChange(\"5\")">删除</a></li>'
+		+ ' </ul>'
+		+ '</div> ';
+	return text;
+}
+function collectionsChange(value){
+	alert(value);
+}		
 // 按钮点击进行文章详情页
 $("#showArticle").click(function() {
 	var articleId = $(this).attr("articleId");

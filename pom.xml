@@ -105,22 +105,21 @@
             <artifactId>flexmark-ext-tables</artifactId>
             <version>0.26.4</version>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.4</version>
         </dependency>
         <!-- 对jsp 和 servlet 的支持 -->
-        <!-- <dependency>
+        <!-- --><dependency>
         	<groupId>org.apache.tomcat.embed</groupId>
         	<artifactId>tomcat-embed-jasper</artifactId>
-        </dependency> -->
+        </dependency> 
         <!-- servle开启支持 -->
-        <dependency>
-        	<groupId>javax.servlet</groupId>
-        	<artifactId>javax.servlet-api</artifactId>
-        </dependency>
+<!--         <dependency> -->
+<!--         	<groupId>javax.servlet</groupId> -->
+<!--         	<artifactId>javax.servlet-api</artifactId> -->
+<!--         </dependency> -->
         <!-- jstl支持开启 -->
         <!-- <dependency>
         	<groupId>javax.servlet</groupId>
